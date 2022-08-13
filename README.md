@@ -11,7 +11,7 @@ https://github.com/nodejsbrasil/nodeteam/blob/main/projetos/projeto-2.md
 
 You will need Node and NPM on your machine to run this project,
 
-You are going to need access to a PostGres server, and create a database called "projeto2".
+You are going to need access to a PostgreSQL server, and a database called "projeto2".
 
 <br>
 
@@ -66,6 +66,15 @@ or in development mode
 ```
 npm run dev
 ```
+
+## Using Docker-Compose
+
+On project root folder just type
+
+```
+docker-compose up
+```
+
 
 Now you have the project running and can start to mess with everything.
 

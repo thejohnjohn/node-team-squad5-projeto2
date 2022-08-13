@@ -1,6 +1,7 @@
 import { ICreateUserDTO } from '@modules/users/dtos/ICreateUserDTO';
 import { IUsersRepository } from '@modules/users/repositories/IUsersRepository';
 import { Repository } from 'typeorm';
+import { FilterBuilder, IFilterQuery } from 'typeorm-dynamic-filters';
 
 import { AppDataSource } from '@shared/infra/typeorm/';
 
@@ -21,14 +22,16 @@ class UsersRepository implements IUsersRepository {
 
   public async create(data: ICreateUserDTO): Promise<User> {
     const newUser = this.ormRepository.create(data);
-
+    console.log(data);
     await this.ormRepository.save(newUser);
 
     return newUser;
   }
 
-  public async getAll(): Promise<[User[], number]> {
-    const result = await this.ormRepository.findAndCount();
+  public async getAll(filter: IFilterQuery): Promise<[User[], number]> {
+    const userFilterBuilder = new FilterBuilder(this.ormRepository, 'users');
+    const qb = userFilterBuilder.build(filter);
+    const result = await qb.getManyAndCount();
 
     return result;
   }
