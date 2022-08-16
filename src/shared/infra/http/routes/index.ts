@@ -6,7 +6,7 @@ import { usersRoutes } from '@modules/users/infra/http/routes/users.routes';
 import { Router } from 'express';
 
 import swaggerUi from 'swagger-ui-express';
-import swaggerJsonDocs from '../../../../../swagger.json';
+import swaggerJsonDocs from '../../../../swagger.json';
 
 const routes = Router();
 
